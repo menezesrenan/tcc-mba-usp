@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Oval Single';
+  src: url('/fonts/Oval-Single.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Oval Black';
+  src: url('/fonts/Oval-Black.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Aplica a fonte padrão no site */
+body {
+  font-family: 'Oval Single', sans-serif;
+}
