@@ -41,3 +41,11 @@ def get_materiais():
     resultado = process_ifc(file_path)
 
     return resultado["materiais"]  # ✅ Retorna apenas a lista de materiais
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "API funcionando corretamente 🚀"}
