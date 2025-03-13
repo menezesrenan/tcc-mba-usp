@@ -209,7 +209,9 @@ const Home: React.FC = () => {
   const fetchMateriais = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://127.0.0.1:8000/materiais/');
+      const response = await fetch(
+        'https://quantitativo-bim.onrender.com/materiais/'
+      );
       const data = await response.json();
       const formattedData: Material[] = data.map(
         (mat: Material, index: number) => ({
