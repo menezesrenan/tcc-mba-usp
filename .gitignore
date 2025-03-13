@@ -13,4 +13,5 @@ backend/uploaded_files/*.ifc
 
 # 🔹 Sistema
 .DS_Store
-Thumbs.db
+Thumbs.dbbackend/uploaded_files/*.ifc
+backend/uploads/*.ifc

@@ -23,5 +23,5 @@ def analisar_estrutura_ifc(file_path):
             print(f"  - {entity}")
 
 # Chame a função para cada arquivo IFC que deseja analisar
-analisar_estrutura_ifc("uploaded_files/Edificio SENAI.ifc")
-analisar_estrutura_ifc("uploaded_files/Projeto1 - ECM.ifc")
+# analisar_estrutura_ifc("uploaded_files/Edificio SENAI.ifc")
+# analisar_estrutura_ifc("uploaded_files/Projeto1 - ECM.ifc")
