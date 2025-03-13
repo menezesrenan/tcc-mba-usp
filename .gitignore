@@ -1,12 +1,16 @@
-# Node.js (Frontend)
-node_modules/
-dist/
-.vite/
+# 🔹 Node.js (Frontend)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
 
-# Python (Backend)
-venv/
-__pycache__/
-.env
+# 🔹 Python (Backend)
+backend/venv/
+backend/__pycache__/
+backend/.env  # Se usar variáveis de ambiente
+backend/materiais_listados.csv
+backend/uploads/
+backend/uploaded_files/*.ifc
 
-# Sistema
-.DS_Storebackend/uploaded_files/*.ifc
+# 🔹 Sistema
+.DS_Store
+Thumbs.db
