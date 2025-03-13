@@ -9,4 +9,4 @@ __pycache__/
 .env
 
 # Sistema
-.DS_Store
+.DS_Storebackend/uploaded_files/*.ifc
