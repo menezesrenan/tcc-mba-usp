@@ -17,6 +17,11 @@ app.add_middleware(
     allow_headers=["*"],  # 🔹 Permite todos os headers
 )
 
+# 🔹 Rota para verificar se a API está online
+@app.get("/")
+def read_root():
+    return {"message": "API funcionando corretamente 🚀"}
+
 # 🔹 Rota para upload do arquivo IFC
 @app.post("/upload/")
 async def upload_file(file: UploadFile = File(...)):
@@ -41,11 +46,3 @@ def get_materiais():
     resultado = process_ifc(file_path)
 
     return resultado["materiais"]  # ✅ Retorna apenas a lista de materiais
-
-from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/")
-def read_root():
-    return {"message": "API funcionando corretamente 🚀"}
