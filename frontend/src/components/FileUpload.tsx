@@ -5,6 +5,7 @@ import axios from 'axios';
 const UploadContainer = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== 'isDragging',
 })<{ isDragging: boolean }>`
+  font-family: 'Oval Black', sans-serif;
   border: 2px dashed ${(props) => (props.isDragging ? '#004aad' : '#ccc')};
   padding: 20px;
   text-align: center;
@@ -54,10 +55,12 @@ const FileUpload: React.FC<{
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
   const [dragging, setDragging] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleFileUpload = async (file: File) => {
+  const handleFileUpload = async (file: File, retryCount = 0) => {
     setIsUploading(true);
     setUploadProgress(0);
+    setErrorMessage(null);
 
     const formData = new FormData();
     formData.append('file', file);
@@ -82,9 +85,25 @@ const FileUpload: React.FC<{
       setIsUploading(false);
       setUploadProgress(100);
       onUploadSuccess(response.data);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erro no upload:', error);
-      setIsUploading(false);
+
+      if (error.response) {
+        setErrorMessage('Erro no servidor. Tente novamente.');
+      } else if (error.code === 'ERR_NETWORK') {
+        setErrorMessage(
+          'O servidor pode estar temporariamente indisponível. Tente novamente em alguns instantes.'
+        );
+      } else {
+        setErrorMessage('Falha ao enviar arquivo. Tente novamente.');
+      }
+
+      // 🔄 Tenta novamente se a API estiver dormindo
+      if (retryCount < 3) {
+        setTimeout(() => handleFileUpload(file, retryCount + 1), 5000);
+      } else {
+        setIsUploading(false);
+      }
     }
   };
 
@@ -135,6 +154,9 @@ const FileUpload: React.FC<{
       )}
       {isUploading && (
         <StatusMessage>⏳ Enviando... {uploadProgress}%</StatusMessage>
+      )}
+      {errorMessage && (
+        <StatusMessage style={{ color: 'red' }}>{errorMessage}</StatusMessage>
       )}
     </UploadContainer>
   );

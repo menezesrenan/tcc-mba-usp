@@ -118,7 +118,7 @@ const Navbar: React.FC = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/comofunciona" onClick={() => setMenuOpen(false)}>
+            <NavLink to="/como-funciona" onClick={() => setMenuOpen(false)}>
               Como Funciona
             </NavLink>
           </NavItem>
