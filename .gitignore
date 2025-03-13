@@ -8,7 +8,7 @@ backend/venv/
 backend/__pycache__/
 backend/.env  # Se usar variáveis de ambiente
 backend/materiais_listados.csv
-backend/uploads/
+backend/uploads/*.ifc
 backend/uploaded_files/*.ifc
 
 # 🔹 Sistema
