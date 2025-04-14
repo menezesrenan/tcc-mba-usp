@@ -67,7 +67,7 @@ const FileUpload: React.FC<{
 
     try {
       const response = await axios.post(
-        'https://quantitativo-bim.onrender.com/upload/',
+        'http://127.0.0.1:8000/upload/',
         formData,
         {
           headers: { 'Content-Type': 'multipart/form-data' },

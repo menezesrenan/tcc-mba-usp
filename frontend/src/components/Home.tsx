@@ -209,9 +209,7 @@ const Home: React.FC = () => {
   const fetchMateriais = async () => {
     setLoading(true);
     try {
-      const response = await fetch(
-        'https://quantitativo-bim.onrender.com/materiais/'
-      );
+      const response = await fetch('http://127.0.0.1:8000/materiais/');
       const data = await response.json();
       const formattedData: Material[] = data.map(
         (mat: Material, index: number) => ({
@@ -334,6 +332,25 @@ const Home: React.FC = () => {
     doc.save('go_quantativo_bim.pdf');
   };
 
+  const handleSaveToDatabase = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/salvar/', {
+        method: 'POST',
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.mensagem); // Exibe: "Materiais salvos no MongoDB com sucesso!"
+      } else {
+        alert(data.mensagem); // Exibe: "Arquivo ainda não foi processado!"
+      }
+    } catch (error) {
+      console.error('Erro ao salvar no banco:', error);
+      alert('Erro ao salvar no banco de dados.');
+    }
+  };
+
   return (
     <HomeContainer>
       <Title>GO | Quantitativo BIM</Title>
@@ -349,6 +366,13 @@ const Home: React.FC = () => {
       ) : materiais.length > 0 ? (
         <>
           <h2>📋 Lista de Materiais</h2>
+          <Button
+            onClick={handleSaveToDatabase}
+            disabled={materiais.length === 0}
+          >
+            💾 Salvar no Banco de Dados
+          </Button>
+
           <Button onClick={exportToPDF}>📄 Exportar PDF</Button>
           <Button onClick={() => handleExport('xlsx')}>📥 Exportar XLSX</Button>
           <Button onClick={() => handleExport('csv')}>📥 Exportar CSV</Button>
