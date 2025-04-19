@@ -20,14 +20,14 @@ Este projeto é composto por dois repositórios — **frontend** e **backend** �
 ```bash
 # Crie e ative o ambiente virtual (se necessário)
 python -m venv .venv
-source .venv/bin/activate  # Linux/macOS
-.venv\Scripts\activate     # Windows
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
 
 # Instale as dependências
 pip install -r requirements.txt
 
 # Inicie o servidor FastAPI
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 📡 O backend estará disponível em: [http://127.0.0.1:8000](http://127.0.0.1:8000)

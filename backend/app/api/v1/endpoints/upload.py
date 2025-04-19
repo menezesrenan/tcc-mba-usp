@@ -21,6 +21,10 @@ async def upload_file(file: UploadFile = File(...)):
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
+    log_path = "uploads/last_file.txt"
+    with open(log_path, "w") as f:
+        f.write(file.filename)
+
     # ✅ Salva o nome e data/hora do upload
     log_path = "uploads/file_update.txt"
     with open(log_path, "a") as f:
